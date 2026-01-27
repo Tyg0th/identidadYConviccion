@@ -35,7 +35,6 @@ const Hero = () => {
                         <div className="firework-1"></div>
                         <div className="firework-2"></div>
                         <div className="firework-3"></div>
-                        <div className="firework-4"></div>
                     </div>
                 )}
                 <div className="hero-content">
@@ -58,6 +57,10 @@ const Hero = () => {
                         </span>
                     </h1>
                     <p className={`subtitle fade-in-delay-2 ${heroOpened ? 'visible' : ''}`}>ATLÁNTICO - 2026</p>
+                    <p className={`hero-description fade-in-delay-2 ${heroOpened ? 'visible' : ''}`}>
+                        Acompañamos a nuestro encuentro departamental con el presidente y senador del Partido MIRA, Manuel Virgüez Piraquive.<br />
+                        ¡Comparte, disfruta e Inspira!
+                    </p>
                     <div className={`hero-bottom-image fade-in-delay-2 ${heroOpened ? 'visible' : ''}`}>
                         <img
                             src="/assets/images/FOTO-MARIA Y MANUEL.png"

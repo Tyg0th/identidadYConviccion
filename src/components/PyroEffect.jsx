@@ -3,28 +3,40 @@ import '../styles.css';
 
 const PyroEffect = () => {
     useEffect(() => {
-        // Generar box-shadow dinámicamente para el efecto de fuegos artificiales
-        // Basado en el código SCSS original
-        const generateBoxShadow = () => {
-            const particles = 80; // Aumentado de 50 a 80
-            const width = 500;
-            const height = 500;
+        // Versión mejorada con menos partículas y mejor distribución
+        const generateBoxShadow = (particles = 50, width = 600, height = 600) => {
             let boxShadow = '';
             let boxShadow2 = '';
             
-            // Generar box-shadow inicial (blanco)
+            // Generar box-shadow inicial (blanco brillante)
             for (let i = 0; i <= particles; i++) {
                 boxShadow2 += '0 0 #fff';
                 if (i < particles) boxShadow2 += ', ';
             }
             
-            // Generar box-shadow de explosión (colores aleatorios)
+            // Generar box-shadow de explosión con mejor distribución
             for (let i = 0; i <= particles; i++) {
-                const x = Math.floor(Math.random() * width) - width / 2;
-                const y = Math.floor(Math.random() * height) - height / 1.2;
-                // Usar colores vibrantes como en el código original (HSL)
-                const hue = Math.floor(Math.random() * 360);
-                boxShadow += `${x}px ${y}px hsl(${hue}, 100%, 50%)`;
+                // Distribución circular más uniforme
+                const angle = (Math.PI * 2 * i) / particles;
+                const radius = Math.random() * (width / 2);
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius - height / 1.5;
+                
+                // Colores más vibrantes y variados
+                const colorSchemes = [
+                    { hue: 0, sat: 100 },    // Rojo
+                    { hue: 60, sat: 100 },   // Amarillo
+                    { hue: 120, sat: 100 },  // Verde
+                    { hue: 180, sat: 100 },  // Cyan
+                    { hue: 240, sat: 100 },  // Azul
+                    { hue: 300, sat: 100 },  // Magenta
+                    { hue: 30, sat: 100 },   // Naranja
+                    { hue: 270, sat: 100 },  // Púrpura
+                ];
+                const color = colorSchemes[Math.floor(Math.random() * colorSchemes.length)];
+                const lightness = 50 + Math.random() * 30; // 50-80% de luminosidad
+                
+                boxShadow += `${Math.round(x)}px ${Math.round(y)}px hsl(${color.hue}, ${color.sat}%, ${lightness}%)`;
                 if (i < particles) boxShadow += ', ';
             }
             
@@ -45,10 +57,12 @@ const PyroEffect = () => {
                 document.head.appendChild(styleElement);
             }
             
-            // Generar box-shadow único para cada elemento
+            // Generar box-shadow único para cada elemento con menos partículas
             const allBoxShadows = [];
             fireworkElements.forEach((element, index) => {
-                const { boxShadow, boxShadow2 } = generateBoxShadow();
+                // Menos partículas para fuegos más ligeros
+                const particles = 40 + Math.floor(Math.random() * 20); // 40-60 partículas
+                const { boxShadow, boxShadow2 } = generateBoxShadow(particles);
                 allBoxShadows.push(boxShadow);
                 // Establecer el box-shadow inicial
                 element.style.boxShadow = boxShadow2;

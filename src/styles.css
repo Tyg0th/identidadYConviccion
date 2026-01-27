@@ -333,16 +333,7 @@ body {
 
 /* Hero Section */
 .hero {
-    background: 
-        linear-gradient(90deg, 
-            var(--mira-dark-blue) 0%, 
-            var(--mira-blue) 25%, 
-            var(--mira-light-blue) 50%, 
-            var(--mira-blue) 75%, 
-            var(--mira-dark-blue) 100%
-        );
-    background-size: 400% 100%;
-    animation: flag-wave 8s ease-in-out infinite;
+    background: var(--mira-blue);
     color: var(--white);
     padding: 0;
     padding-top: 0;
@@ -375,28 +366,6 @@ body {
     }
 }
 
-@keyframes flag-wave {
-    0% {
-        background-position: 0% 0%;
-        transform: skewY(0deg);
-    }
-    25% {
-        background-position: 25% 0%;
-        transform: skewY(1deg);
-    }
-    50% {
-        background-position: 50% 0%;
-        transform: skewY(0deg);
-    }
-    75% {
-        background-position: 75% 0%;
-        transform: skewY(-1deg);
-    }
-    100% {
-        background-position: 100% 0%;
-        transform: skewY(0deg);
-    }
-}
 
 .hero::before {
     content: '';
@@ -429,8 +398,7 @@ body {
 .pyro > .after,
 .pyro > .firework-1,
 .pyro > .firework-2,
-.pyro > .firework-3,
-.pyro > .firework-4 {
+.pyro > .firework-3 {
     position: absolute;
     width: 5px;
     height: 5px;
@@ -533,18 +501,6 @@ body {
     animation-duration: 1.3s, 1.3s, 6.5s;
 }
 
-.pyro > .firework-4 {
-    -webkit-animation-delay: 6.25s, 6.25s, 6.25s;
-    -moz-animation-delay: 6.25s, 6.25s, 6.25s;
-    -o-animation-delay: 6.25s, 6.25s, 6.25s;
-    -ms-animation-delay: 6.25s, 6.25s, 6.25s;
-    animation-delay: 6.25s, 6.25s, 6.25s;
-    -webkit-animation-duration: 1.4s, 1.4s, 7s;
-    -moz-animation-duration: 1.4s, 1.4s, 7s;
-    -o-animation-duration: 1.4s, 1.4s, 7s;
-    -ms-animation-duration: 1.4s, 1.4s, 7s;
-    animation-duration: 1.4s, 1.4s, 7s;
-}
 
 
 @-webkit-keyframes bang {
@@ -831,6 +787,18 @@ body {
     text-transform: uppercase;
 }
 
+.hero-description {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.6;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
 
 .hero-top-image {
     margin-bottom: 0;
@@ -1313,6 +1281,12 @@ footer {
         letter-spacing: 1.5px;
     }
 
+    .hero-description {
+        font-size: 1.2rem;
+        padding: 0 15px;
+        margin-bottom: 25px;
+    }
+
     .hero-logo {
         max-width: 200px;
     }
@@ -1442,6 +1416,12 @@ footer {
     .subtitle {
         font-size: 1.2rem;
         letter-spacing: 1px;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        padding: 0 10px;
+        margin-bottom: 20px;
     }
 
     .hero-logo {

@@ -42,7 +42,7 @@ const EventInfo = () => {
                     className="info-item" 
                     ref={el => infoItemsRef.current[0] = el}
                 >
-                    <div className="icon">📅</div>
+                    <div className="icon">🗓️</div>
                     <div className="info-text">
                         <h3>Fecha</h3>
                         <p>Domingo 1 de Febrero</p>
