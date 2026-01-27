@@ -55,7 +55,7 @@ const EventInfo = () => {
                     <div className="icon">🕐</div>
                     <div className="info-text">
                         <h3>Hora</h3>
-                        <p>10:00 AM</p>
+                        <p>2:30 PM</p>
                     </div>
                 </div>
                 <div 

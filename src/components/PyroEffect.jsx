@@ -6,7 +6,7 @@ const PyroEffect = () => {
         // Generar box-shadow dinámicamente para el efecto de fuegos artificiales
         // Basado en el código SCSS original
         const generateBoxShadow = () => {
-            const particles = 50;
+            const particles = 80; // Aumentado de 50 a 80
             const width = 500;
             const height = 500;
             let boxShadow = '';
@@ -31,15 +31,10 @@ const PyroEffect = () => {
             return { boxShadow, boxShadow2 };
         };
 
-        const beforeElement = document.querySelector('.pyro > .before');
-        const afterElement = document.querySelector('.pyro > .after');
+        // Aplicar a todos los elementos de fuegos artificiales
+        const fireworkElements = document.querySelectorAll('.pyro > div');
         
-        if (beforeElement && afterElement) {
-            const { boxShadow, boxShadow2 } = generateBoxShadow();
-            // Establecer el box-shadow inicial
-            beforeElement.style.boxShadow = boxShadow2;
-            afterElement.style.boxShadow = boxShadow2;
-            
+        if (fireworkElements.length > 0) {
             // Crear estilos dinámicos para la animación bang
             const styleId = 'pyro-bang-animation';
             let styleElement = document.getElementById(styleId);
@@ -50,33 +45,55 @@ const PyroEffect = () => {
                 document.head.appendChild(styleElement);
             }
             
-            styleElement.textContent = `
-                @keyframes bang {
-                    to {
-                        box-shadow: ${boxShadow};
+            // Generar box-shadow único para cada elemento
+            const allBoxShadows = [];
+            fireworkElements.forEach((element, index) => {
+                const { boxShadow, boxShadow2 } = generateBoxShadow();
+                allBoxShadows.push(boxShadow);
+                // Establecer el box-shadow inicial
+                element.style.boxShadow = boxShadow2;
+            });
+            
+            // Crear keyframes individuales para cada elemento
+            let keyframesContent = '';
+            fireworkElements.forEach((element, index) => {
+                const animationName = `bang-firework-${index}`;
+                keyframesContent += `
+                    @keyframes ${animationName} {
+                        to {
+                            box-shadow: ${allBoxShadows[index]};
+                        }
                     }
-                }
-                @-webkit-keyframes bang {
-                    to {
-                        box-shadow: ${boxShadow};
+                    @-webkit-keyframes ${animationName} {
+                        to {
+                            box-shadow: ${allBoxShadows[index]};
+                        }
                     }
-                }
-                @-moz-keyframes bang {
-                    to {
-                        box-shadow: ${boxShadow};
+                    @-moz-keyframes ${animationName} {
+                        to {
+                            box-shadow: ${allBoxShadows[index]};
+                        }
                     }
-                }
-                @-o-keyframes bang {
-                    to {
-                        box-shadow: ${boxShadow};
+                    @-o-keyframes ${animationName} {
+                        to {
+                            box-shadow: ${allBoxShadows[index]};
+                        }
                     }
-                }
-                @-ms-keyframes bang {
-                    to {
-                        box-shadow: ${boxShadow};
+                    @-ms-keyframes ${animationName} {
+                        to {
+                            box-shadow: ${allBoxShadows[index]};
+                        }
                     }
-                }
-            `;
+                `;
+                
+                // Aplicar la animación específica a cada elemento
+                const currentAnimations = element.style.animation || 
+                    'bang 1s ease-out infinite backwards, gravity 1s ease-in infinite backwards, position 5s linear infinite backwards, pyro-fade-in 0.5s ease-in forwards';
+                const newAnimations = currentAnimations.replace(/bang\s/g, `${animationName} `);
+                element.style.animation = newAnimations;
+            });
+            
+            styleElement.textContent = keyframesContent;
             
             return () => {
                 const style = document.getElementById(styleId);

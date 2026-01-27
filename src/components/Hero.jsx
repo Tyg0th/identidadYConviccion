@@ -32,6 +32,10 @@ const Hero = () => {
                     <div className="pyro">
                         <div className="before"></div>
                         <div className="after"></div>
+                        <div className="firework-1"></div>
+                        <div className="firework-2"></div>
+                        <div className="firework-3"></div>
+                        <div className="firework-4"></div>
                     </div>
                 )}
                 <div className="hero-content">
