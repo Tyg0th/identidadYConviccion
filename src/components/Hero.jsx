@@ -63,8 +63,8 @@ const Hero = () => {
                     </p>
                     <div className={`hero-bottom-image fade-in-delay-2 ${heroOpened ? 'visible' : ''}`}>
                         <img
-                            src="/assets/images/FOTO-MARIA Y MANUEL.png"
-                            alt="María Ardila y Manuel Virgüez"
+                            src="/assets/images/ManuelVirguez.png"
+                            alt="Manuel Virgüez Piraquive"
                             className="hero-candidates-photo"
                         />
                     </div>
