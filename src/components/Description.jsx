@@ -3,9 +3,9 @@ import '../styles.css';
 const Description = () => {
     return (
         <section className="description">
-            <h2 className="slide-in">Un encuentro para fortalecer nuestra identidad</h2>
+            <h2 className="slide-in">Identidad que inspira. Convicción que transforma</h2>
             <p className="fade-in-delay-2">
-                Este evento está dirigido a los militantes del partido MIRA. Un espacio dedicado a afianzar las bases y los fundamentos que nos definen como MIRAÍSTAS, fortaleciendo nuestra identidad y compromiso con los valores del partido.
+            Un espacio creado para fortalecer nuestro compromiso, renovar la motivación y seguir cultivando el corazón Miraísta que nos inspira a servir con amor, valores y excelencia, reafirmando con convicción los principios que nos representan y nos guían en cada acción.
             </p>
         </section>
     );
