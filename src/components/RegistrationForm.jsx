@@ -10,7 +10,7 @@ const RegistrationForm = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const registrationCardRef = useRef(null);
     
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyWuuSseL_C0RondXRn-XnYmSncdsKveN8nGJO84QKrNMUPxrkicchhpTvuNcSNnt8-dw/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzn7Po46KtoLPu7BWsFcE3CCuZNYwTQxEkAAlh784Affox6aAFiA6WtOA1k2sUVUP0_Rw/exec';
 
     useEffect(() => {
         const observerOptions = {
