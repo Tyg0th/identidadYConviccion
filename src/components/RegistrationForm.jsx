@@ -60,19 +60,14 @@ const RegistrationForm = () => {
         setIsSubmitting(true);
 
         try {
-            // Preparar los datos para enviar
+            // Preparar los datos para enviar (solo nombre y sede como espera el script)
             const dataToSend = {
-                nombre: formData.nombre,
-                sede: formData.sede,
-                fecha: new Date().toLocaleString('es-CO', {
-                    timeZone: 'America/Bogota',
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                })
+                nombre: formData.nombre.trim(),
+                sede: formData.sede.trim()
             };
+
+            console.log('Enviando datos:', dataToSend);
+            console.log('URL del script:', GOOGLE_SCRIPT_URL);
 
             // Enviar datos a Google Apps Script
             const response = await fetch(GOOGLE_SCRIPT_URL, {
@@ -85,7 +80,8 @@ const RegistrationForm = () => {
             });
 
             // Con no-cors no podemos ver la respuesta, pero asumimos éxito
-            console.log('Datos enviados:', dataToSend);
+            console.log('Petición enviada. Respuesta (no-cors):', response);
+            console.log('Datos enviados exitosamente:', dataToSend);
             
             // Mostrar mensaje de éxito
             setShowSuccess(true);
@@ -98,6 +94,11 @@ const RegistrationForm = () => {
 
         } catch (error) {
             console.error('Error al enviar datos:', error);
+            console.error('Detalles del error:', {
+                message: error.message,
+                stack: error.stack,
+                name: error.name
+            });
             alert('Hubo un error al procesar tu inscripción. Por favor, intenta nuevamente.');
         } finally {
             setIsSubmitting(false);
